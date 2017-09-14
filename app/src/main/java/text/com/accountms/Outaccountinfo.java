@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import Dao.InaccountDAO;
-import model.Tb_inaccount;
+import Dao.*;
+import model.*;
 
-public class Inaccountinfo extends AppCompatActivity {
+public class Outaccountinfo extends AppCompatActivity {
 
     public static final String FLAG="id";
     ListView lvinfo;
@@ -24,41 +24,38 @@ public class Inaccountinfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inaccountinfo);
+        setContentView(R.layout.outaccountinfo);
 
-        lvinfo=(ListView)findViewById(R.id.lvinaccountinfo);
-
-        ShowInfo(R.id.btnininfo);
+        lvinfo=(ListView)findViewById(R.id.lvoutaccountinfo);
+        Showinfo(R.id.btnoutinfo);
 
         lvinfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String strInfo=String.valueOf(((TextView)view).getText());
                 String strid=strInfo.substring(0,strInfo.indexOf('|'));
-                Intent intent=new Intent(Inaccountinfo.this,Infomanage.class);
+                Intent intent=new Intent(Outaccountinfo.this,InfoManage.class);
                 intent.putExtra(FLAG,new String[]{strid,strType});
                 startActivity(intent);
             }
         });
-
     }
 
-    private void ShowInfo(int intType){
+    private void Showinfo(int intType){
         String[]strInfos=null;
         ArrayAdapter<String> arrayAdapter=null;
-        strType ="btnininfo";
-        InaccountDAO inaccountinfo=new InaccountDAO(Inaccountinfo.this);
-        List<Tb_inaccount> listinfos=inaccountinfo.getScrollData(0,(int)inaccountinfo.getCount());
+        strType="btnoutinfo";
+        outaccountDAO outaccountinfo=new outaccountDAO(Outaccountinfo.this);
+        List<Tb_outaccount> listinfos=outaccountinfo.getScrollData(0,(int)outaccountinfo.getCount());
         strInfos=new String[listinfos.size()];
         int m=0;
-        for(Tb_inaccount tb_inaccount:listinfos){
-            strInfos[m]=tb_inaccount.getid()+"|"+tb_inaccount.getType()+" "
-                    +String.valueOf(tb_inaccount.getMoney())+"元"
-                    +tb_inaccount.getTime();
+        for(Tb_outaccount tb_outaccount:listinfos){
+            strInfos[m]=tb_outaccount.getid()+"|"+tb_outaccount.getType()+" "+String.valueOf(tb_outaccount.getMoney())+"元"
+                    +tb_outaccount.getTime();
             m++;
         }
         arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,strInfos);
-        lvinfo.setAdapter(arrayAdapter);
     }
+}
 
 }
