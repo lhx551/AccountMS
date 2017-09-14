@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+import Dao.InaccountDAO;
+import model.Tb_inaccount;
+
 public class AddInaccount extends AppCompatActivity {
 
     protected static final int DATE_DIALOG_ID=0;
@@ -56,7 +59,7 @@ public class AddInaccount extends AppCompatActivity {
                 String strInMoney=txtInMoney.getText().toString();
                 if (!strInMoney.isEmpty()){
                     InaccountDAO inaccountDAO=new InaccountDAO(AddInaccount.this);
-                    Tb_inaccount tb_inaccount=new Tb_inaccount(inaccountDAP.getMaxld()+1,Double.parseDouble(strInMoney),txtInTime.getText().toString(),
+                    Tb_inaccount tb_inaccount=new Tb_inaccount(inaccountDAO.getMaxid()+1,Double.parseDouble(strInMoney),txtInTime.getText().toString(),
                             spInType.getSelectedItem().toString(),txtInHandler.getText().toString(),txtInMark.getText().toString());
                     inaccountDAO.add(tb_inaccount);
                     Toast.makeText(AddInaccount.this,"【新增收入】数据添加成功！",Toast.LENGTH_SHORT).show();
