@@ -17,6 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Inaccountinfo" />
+        <activity android:name=".Showinfo" />
+        <activity android:name=".FlagManage"></activity>
     </application>
 
 </manifest>

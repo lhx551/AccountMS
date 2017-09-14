@@ -48,16 +48,9 @@ public class flagDAO {
     /**
      * 删除收入信息
      */
-    public void delete(Integer[] ids){
-        if(ids.length>0){
-            StringBuffer sb=new StringBuffer();
-            for(int i=0;i<ids.length;i++){
-                sb.append('?').append(',');
-            }
-            sb.deleteCharAt(sb.length()-1);
-            db=helper.getWritableDatabase();
-            db.execSQL("delete from tb_flag where _id in ("+sb+") ",(Object[])ids);
-        }
+    public void delete(int ids){
+        db=helper.getWritableDatabase();
+        db.execSQL("delete from tb_flag where _id=?",new String[]{String.valueOf(ids)});
     }
     /**
      * 获取收入信息
