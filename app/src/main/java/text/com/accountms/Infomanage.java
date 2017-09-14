@@ -27,6 +27,7 @@ public class Infomanage extends AppCompatActivity {
     outaccountDAO outaccountDAO=new outaccountDAO(Infomanage.this);
     InaccountDAO inaccountDAO=new InaccountDAO(Infomanage.this);
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

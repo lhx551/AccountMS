@@ -34,7 +34,7 @@ public class Outaccountinfo extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String strInfo=String.valueOf(((TextView)view).getText());
                 String strid=strInfo.substring(0,strInfo.indexOf('|'));
-                Intent intent=new Intent(Outaccountinfo.this,InfoManage.class);
+                Intent intent=new Intent(Outaccountinfo.this,Infomanage.class);
                 intent.putExtra(FLAG,new String[]{strid,strType});
                 startActivity(intent);
             }
@@ -58,4 +58,4 @@ public class Outaccountinfo extends AppCompatActivity {
     }
 }
 
-}
+
